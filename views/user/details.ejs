@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include("../includes/nav.ejs") %>
+        <div class="container mt-5">
+            <% if(json && json.videos.results[0]){ %>
+            <div class="details-div">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img
+                            src="https://image.tmdb.org/t/p/w500<%=img%>"
+                            class="card-img-top"
+                            alt="movie poster"
+                            height="360px"
+                        />
+                    </div>
+                    <div class="col-md-8 p-2">
+                        <div
+                            class="embed-responsive embed-responsive-16by9 trailer"
+                        >
+                            <iframe
+                                class="embed-responsive-item"
+                                src="https://www.youtube.com/embed/<%=json.videos.results[0].key%>?rel=0"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h2><%= json.title %></h2>
+                    <p>Release data : <%= json.release_date %></p>
+                    <% for(datas of json.genres){ %>
+                    <samll>| <%= datas.name %> |</samll>
+                    <%}%>
+
+                    <p>
+                        Spoken Language : <% for(datas of
+                        json.spoken_languages){ %> <%= datas.name %> <%}%>
+                    </p>
+                    <p>Status : <%=json.status%></p>
+                </div>
+                <div class="col-md-6">
+                    <h1></h1>
+                    <p>IMDB ID : <%= json.imdb_id %></p>
+                    <% for(datas of json.production_companies){ %>
+                    <samll>| <%= datas.name %> |</samll>
+                    <%}%>
+                    <p>Runtime : <%= json.runtime %> min</p>
+                    <p>Average : <%=json.vote_average%></p>
+                    <p>Vote count : <%=json.vote_count%></p>
+                </div>
+            </div>
+            <div>
+                <h2><u>Overview</u></h2>
+                <p><%=json.overview%></p>
+            </div>
+            <div class="cast-dir">
+                <h2><u>Casts</u></h2>
+                <div class="row">
+                    <%for(datas of credits){%> <%if(datas.profile_path){%>
+                    <div class="col-md-2 p-3 col-4">
+                        <div class="profile-image text-center">
+                            <img
+                                src="https://image.tmdb.org/t/p/w500<%=datas.profile_path%>"
+                                alt="profile image"
+                                height="90px"
+                                width="90px"
+                            />
+                        </div>
+                        <div class="profile-det text-center">
+                            <p><%=datas.name%></p>
+                            <p><%=datas.character%></p>
+                        </div>
+                    </div>
+                    <%}%> <%}%>
+                </div>
+            </div>
+            <%if(crew){%>
+            <div class="crew">
+                <h2><u>Crew</u></h2>
+                <div class="row">
+                    <%for(datas of crew){%> <%if(datas.profile_path){%>
+                    <div class="col-md-2 p-3 col-4">
+                        <div class="profile-image text-center">
+                            <img
+                                src="https://image.tmdb.org/t/p/w500<%=datas.profile_path%>"
+                                alt="profile image"
+                                height="90px"
+                                width="90px"
+                            />
+                        </div>
+                        <div class="profile-det text-center">
+                            <p><%=datas.name%></p>
+                            <p><%=datas.department%></p>
+                        </div>
+                    </div>
+                    <%}%> <%}%>
+                </div>
+            </div>
+            <%}%> <%if(reviews){%>
+            <div class="reviews p-2 my-3">
+                <h2><u>Reviews</u></h2>
+                <%for(datas of reviews){%>
+                <div class="my-2">
+                    <p>
+                        Author :
+                        <samll class="text-secondary"><%=datas.author%></samll>
+                    </p>
+                    <p>
+                        Content :
+                        <samll class="text-secondary"><%=datas.content%></samll>
+                    </p>
+                    <hr />
+                </div>
+                <%}%>
+            </div>
+            <%}%> <% }else{ %>
+            <h3 class="text-secondary">No data found!!!</h3>
+            <% } %>
+        </div>
+    </body>
+</html>

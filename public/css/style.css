@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500&display=swap");
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Grenze Gotisch", cursive;
+}
+/* body {
+    background-image: url("https://image.freepik.com/free-vector/various-movie-stuff-doodle-seamless-background_6997-698.jpg");
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.342);
+} */
+.card-body {
+    height: 180px !important;
+}
+.card:hover {
+    scale: 1.04;
+    transition: 0.5s linear;
+}
+.card {
+    transition: 0.5s linear;
+}
+
+.details-div {
+    margin-bottom: 30px;
+}
+.trailer {
+    height: 340px !important;
+}
+#panel {
+    display: none;
+}

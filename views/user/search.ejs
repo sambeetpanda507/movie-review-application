@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../includes/head.ejs') %>
+    <body>
+        <%- include("../includes/nav.ejs") %>
+        <div class="container my-3">
+            <%if (json && json.total_pages>0){ %>
+            <div class="row">
+                <% for(datas of json.results){ %> <% if(datas.poster_path &&
+                datas.backdrop_path && datas.original_title!=='Idioterne'){ %>
+
+                <div
+                    class="col-md-4 p-2 d-flex justify-content-center align-items-center"
+                >
+                    <div class="card" style="width: 18rem;">
+                        <img
+                            src="https://image.tmdb.org/t/p/w500<%=datas.poster_path%>"
+                            class="card-img-top"
+                            alt="movie poster"
+                            height="360px"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title text-secondary">
+                                <%=datas.title %>
+                            </h5>
+                            <p
+                                class="text-dark p-1 border border-secondary d-inline"
+                            >
+                                Popularity : <%= datas.popularity%>
+                            </p>
+                            <br /><a
+                                href="/details/<%=datas.id%>?img=<%=datas.poster_path%>"
+                                class="btn btn-outline-dark my-2"
+                                >Details</a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <% } %> <%}%>
+            </div>
+            <% }else{ %>
+            <h3 class="text-secondary">No data found!!!</h3>
+            <% } %>
+        </div>
+    </body>
+</html>
